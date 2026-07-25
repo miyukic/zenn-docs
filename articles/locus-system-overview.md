@@ -6,7 +6,7 @@ topics: ["ai", "rag", "markdown", "llm", "pgvector"]
 published: true
 ---
 
-![Locus System](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/locus-logo.svg)
+<img src="https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/locus-logo.svg" width="100" alt="Locus System" />
 
 Claude Codeで進めた作業の続きを、翌日にCodexで始める。外出中はスマートフォンのChatGPTから確認する。
 
@@ -183,9 +183,17 @@ Gitへ保存
 
 ## なぜ全部を直接読まず、検索するのか
 
-`log.md`や`history/`は、使い続けるほど大きくなります。すべてをAIへ渡す方式では、記録が増えるほど起動が遅くなり、入力も増え続けます。
+Locus Systemを使い始めた当初は、`log.md`は毎回全文を読んでいました。当時はまだ短く、それで十分でした。
 
-そこで、情報を二つに分けています。
+しかし数か月使い続けるうちに`log.md`は数千行を超え、`history/`（各AIの会話履歴）も同じように増え続けました。すべてをAIへ渡す方式では、記録が増えるほど起動が遅くなり、入力も増え続けます。全文を読む方式は、いずれ破綻するのが見えていました。
+
+そこで導入したのが **RAG（Retrieval-Augmented Generation）** です。「必要な部分だけを検索して探し出し、それを回答の材料として渡す」仕組みです。
+
+![RAGの基本の流れ。質問に対して索引を検索し、該当箇所だけを取り出して、AIの文脈に追加する](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/rag-basics.svg)
+
+全文を毎回渡す代わりに、質問に関係しそうな部分だけをその都度探して渡す。これにより、記録がどれだけ増えても、AIに渡す量はほぼ一定に保てます。
+
+具体的には、情報を二つに分けています。
 
 ### 毎回そのまま読む
 

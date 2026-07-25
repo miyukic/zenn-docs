@@ -1,0 +1,39 @@
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="900" height="320" fill="#0d1117"/>
+  <text x="450" y="36" text-anchor="middle" fill="#e6edf3" font-size="19" font-weight="bold">RAGの基本の流れ（検索して、渡す）</text>
+
+  <!-- Step 1: question -->
+  <rect x="30" y="110" width="160" height="90" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <text x="110" y="145" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="bold">質問・会話</text>
+  <text x="110" y="168" text-anchor="middle" fill="#8b949e" font-size="11">「前にPAの校正</text>
+  <text x="110" y="184" text-anchor="middle" fill="#8b949e" font-size="11">どうだったっけ」</text>
+
+  <!-- Step 2: search index -->
+  <rect x="230" y="110" width="160" height="90" rx="10" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+  <text x="310" y="145" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="bold">索引を検索</text>
+  <text x="310" y="168" text-anchor="middle" fill="#8b949e" font-size="11">意味が近い文章を</text>
+  <text x="310" y="184" text-anchor="middle" fill="#8b949e" font-size="11">DBの中から探す</text>
+
+  <!-- Step 3: retrieved chunks -->
+  <rect x="430" y="110" width="160" height="90" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <text x="510" y="140" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="bold">該当箇所を数件</text>
+  <text x="510" y="163" text-anchor="middle" fill="#8b949e" font-size="11">log.md:5713</text>
+  <text x="510" y="179" text-anchor="middle" fill="#8b949e" font-size="11">projects/…:120</text>
+
+  <!-- Step 4: added to context -->
+  <rect x="630" y="110" width="150" height="90" rx="10" fill="#161b22" stroke="#a371f7" stroke-width="2"/>
+  <text x="705" y="145" text-anchor="middle" fill="#e6edf3" font-size="13" font-weight="bold">文脈に追加</text>
+  <text x="705" y="168" text-anchor="middle" fill="#8b949e" font-size="11">AIの会話に</text>
+  <text x="705" y="184" text-anchor="middle" fill="#8b949e" font-size="11">差し込む</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="ragArrow" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/></marker>
+  </defs>
+  <path d="M190,155 L225,155" stroke="#8b949e" stroke-width="2" marker-end="url(#ragArrow)"/>
+  <path d="M390,155 L425,155" stroke="#8b949e" stroke-width="2" marker-end="url(#ragArrow)"/>
+  <path d="M590,155 L625,155" stroke="#8b949e" stroke-width="2" marker-end="url(#ragArrow)"/>
+
+  <text x="450" y="250" text-anchor="middle" fill="#8b949e" font-size="13">全部を毎回読み込む代わりに、必要な部分だけをその都度渡す</text>
+  <text x="450" y="272" text-anchor="middle" fill="#8b949e" font-size="13">「Retrieval（検索）」+「Augmented Generation（回答の補強）」の略</text>
+</svg>
