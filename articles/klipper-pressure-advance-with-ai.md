@@ -10,7 +10,7 @@ published: true
 
 Anycubic i3 Mega S を Klipper に移行した話は[別記事](https://zenn.dev/yumeno/articles/klipper-anycubic-i3-megas)に書いた。今回はその続きで、積み残しになっていたPAの校正をやった記録。
 
-結論だけ言うと校正自体は終わって `pressure_advance: 0.62` に落ち着いた。ただし過程はきれいじゃなかった。ベッド定着で3回転け、校正コマンドの送信を丸ごと1回忘れ、写真の見間違いで小一時間考え込んでしまった。今回はその失敗の中身をそのまま記録する。
+校正自体は終わって `pressure_advance: 0.62` に落ち着いた。ただし過程はきれいじゃなかった。ベッド定着で3回転け、校正コマンドの送信を丸ごと1回忘れ、写真の見間違いで小一時間考え込んでしまった。今回はその失敗の中身をそのまま記録する。
 
 :::message
 このプリンターは、ロボットアーム自作プロジェクト（[SO-101 / LocusArm](https://zenn.dev/yumeno/articles/so101-lerobot-act-dataset-peek)）向けの部品出力にも使う予定。実部品を精度良く出すための下準備として、まず品質の底上げからやっている。
