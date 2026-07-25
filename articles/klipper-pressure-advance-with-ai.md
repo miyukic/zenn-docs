@@ -52,7 +52,20 @@ PA = START + 現在のZ高さ(mm) × FACTOR
 この式は**絶対Z高さ基準**で、印刷開始からの経過時間やコマンドを送ったタイミングには依存しない。これが後述するミスを救うことになる。
 :::
 
-![高さとPA値の対応。緑=PA不足で角が膨らむ、青=適正でシャープ、赤=PA過多で角が薄く途切れる](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/tuning-tower-diagram.svg)
+![TUNING_TOWERの仕組み。1回の印刷で低い方から高い方まで、PA値を連続的に変化させながら焼く](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/tuning-tower-concept.svg)
+
+## スライス設定：あえて薄く・速く焼く
+
+`square_tower.stl` をCuraでスライスする際、通常の印刷とは違う設定を意図的に使う。
+
+| 項目 | 値 | 理由 |
+|------|-----|------|
+| ウォールライン数 | 2 | 壁を薄くして、角の膨らみ・痩せが目立ちやすくする |
+| インフィル | 0% | 中身を空洞にして印刷を軽くする（判定に不要な部分） |
+| トップ/ボトム | 0層 | 上面・底面を作らず、側面の壁だけを評価対象にする |
+| 壁の印刷速度 | 100mm/s | 遅いとPAの効果が出にくいため、あえて速める |
+
+つまりこのタワーは「PAの効果を目で見やすくするために、わざと薄く・軽く・速く」作っている。これが次に説明する定着トラブルの原因にもなる。
 
 ## 定着トラブル：3回のうち2回失敗
 
@@ -117,6 +130,8 @@ PA = START + 現在のZ高さ(mm) × FACTOR
 ```
 PA = 31mm × 0.020 = 0.62
 ```
+
+![実際の高さとPA値の対応。オレンジがコマンドを送った境目(Z=16.86mm)、青が採用した31mm地点](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/tuning-tower-diagram.svg)
 
 Klipperの `SET_PRESSURE_ADVANCE` で反映し、`printer.cfg` の `[extruder]` セクションに `pressure_advance: 0.62` を書き込んで確定させた。
 
