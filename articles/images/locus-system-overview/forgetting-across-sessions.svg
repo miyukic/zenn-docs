@@ -1,0 +1,43 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="900" height="420" fill="#0d1117"/>
+  <text x="450" y="38" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="bold">AIは、会話の外側を自動では覚えていない</text>
+
+  <!-- Session boxes -->
+  <g>
+    <rect x="40" y="90" width="220" height="140" rx="10" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+    <text x="150" y="120" text-anchor="middle" fill="#3fb950" font-size="15" font-weight="bold">Day 1</text>
+    <text x="150" y="145" text-anchor="middle" fill="#e6edf3" font-size="14">Claude Code</text>
+    <text x="150" y="175" text-anchor="middle" fill="#8b949e" font-size="12">作業を進める</text>
+    <text x="150" y="195" text-anchor="middle" fill="#8b949e" font-size="12">判断・失敗が生まれる</text>
+  </g>
+
+  <g>
+    <rect x="340" y="90" width="220" height="140" rx="10" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+    <text x="450" y="120" text-anchor="middle" fill="#d29922" font-size="15" font-weight="bold">Day 2</text>
+    <text x="450" y="145" text-anchor="middle" fill="#e6edf3" font-size="14">Codex</text>
+    <text x="450" y="175" text-anchor="middle" fill="#8b949e" font-size="12">続きのつもりで起動</text>
+    <text x="450" y="195" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">昨日の話を知らない</text>
+  </g>
+
+  <g>
+    <rect x="640" y="90" width="220" height="140" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="750" y="120" text-anchor="middle" fill="#58a6ff" font-size="15" font-weight="bold">外出中</text>
+    <text x="750" y="145" text-anchor="middle" fill="#e6edf3" font-size="14">スマホのChatGPT</text>
+    <text x="750" y="175" text-anchor="middle" fill="#8b949e" font-size="12">別の会話履歴</text>
+    <text x="750" y="195" text-anchor="middle" fill="#f85149" font-size="12" font-weight="bold">やっぱり知らない</text>
+  </g>
+
+  <!-- Broken links between boxes -->
+  <g stroke="#f85149" stroke-width="2">
+    <line x1="260" y1="160" x2="300" y2="160" stroke-dasharray="6,6"/>
+    <line x1="560" y1="160" x2="600" y2="160" stroke-dasharray="6,6"/>
+  </g>
+  <text x="280" y="145" text-anchor="middle" fill="#f85149" font-size="18">✕</text>
+  <text x="580" y="145" text-anchor="middle" fill="#f85149" font-size="18">✕</text>
+
+  <!-- Bottom note -->
+  <rect x="140" y="280" width="620" height="90" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="450" y="312" text-anchor="middle" fill="#e6edf3" font-size="14">AIごとに会話履歴・保存場所が違うため、</text>
+  <text x="450" y="336" text-anchor="middle" fill="#e6edf3" font-size="14">セッションやAIが変わるたびに、前回の文脈は自動では引き継がれない</text>
+  <text x="450" y="358" text-anchor="middle" fill="#8b949e" font-size="13">長期記憶が無い状態で、毎回そこそこ「初対面」から始まる</text>
+</svg>

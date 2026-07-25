@@ -1,0 +1,60 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="900" height="560" fill="#0d1117"/>
+  <text x="450" y="36" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="bold">Locus System 全体俯瞰図</text>
+
+  <!-- Center: Locus folder (source of truth) -->
+  <rect x="330" y="220" width="240" height="150" rx="10" fill="#161b22" stroke="#e6edf3" stroke-width="2.5"/>
+  <text x="450" y="248" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">Locusフォルダ（正本）</text>
+  <text x="450" y="272" text-anchor="middle" fill="#8b949e" font-size="12">rules.md / ai_handoff.md</text>
+  <text x="450" y="292" text-anchor="middle" fill="#8b949e" font-size="12">me.md / log.md</text>
+  <text x="450" y="312" text-anchor="middle" fill="#8b949e" font-size="12">projects/ / history/ / skills/</text>
+  <text x="450" y="340" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">すべて人が読めるMarkdown</text>
+  <text x="450" y="358" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="bold">+ Gitで変更履歴を保持</text>
+
+  <!-- Left: local AI tools, direct read/write -->
+  <g>
+    <rect x="40" y="140" width="190" height="56" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="135" y="174" text-anchor="middle" fill="#e6edf3" font-size="14">Claude Code</text>
+  </g>
+  <g>
+    <rect x="40" y="212" width="190" height="56" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="135" y="246" text-anchor="middle" fill="#e6edf3" font-size="14">Codex</text>
+  </g>
+  <g>
+    <rect x="40" y="284" width="190" height="56" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+    <text x="135" y="318" text-anchor="middle" fill="#e6edf3" font-size="14">Gemini CLI / 他</text>
+  </g>
+  <text x="270" y="235" text-anchor="middle" fill="#58a6ff" font-size="12">直接</text>
+  <text x="270" y="252" text-anchor="middle" fill="#58a6ff" font-size="12">読み書き</text>
+  <path d="M230,168 L330,270 M230,240 L330,285 M230,312 L330,310" stroke="#58a6ff" stroke-width="1.5" fill="none" marker-end="url(#arrowBlue)"/>
+
+  <!-- Below: RAG index, built from the folder -->
+  <rect x="330" y="430" width="240" height="100" rx="10" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+  <text x="450" y="458" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="bold">RAG検索インデックス</text>
+  <text x="450" y="480" text-anchor="middle" fill="#8b949e" font-size="12">Ollama(bge-m3) + PostgreSQL/pgvector</text>
+  <text x="450" y="500" text-anchor="middle" fill="#8b949e" font-size="12">Markdownから作り直せる索引</text>
+  <path d="M450,370 L450,430" stroke="#d29922" stroke-width="1.5" fill="none" marker-end="url(#arrowOrange)"/>
+  <text x="470" y="405" fill="#d29922" font-size="12">変更分だけ反映</text>
+
+  <!-- Right: Locus API, read-only gateway -->
+  <rect x="650" y="235" width="200" height="80" rx="10" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="750" y="265" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="bold">Locus API</text>
+  <text x="750" y="288" text-anchor="middle" fill="#f85149" font-size="12">読み取り専用の窓口</text>
+  <path d="M570,280 L650,275" stroke="#f85149" stroke-width="1.5" fill="none" marker-end="url(#arrowRed)"/>
+
+  <!-- Far right: ChatGPT mobile -->
+  <rect x="650" y="140" width="200" height="60" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+  <text x="750" y="175" text-anchor="middle" fill="#e6edf3" font-size="14">ChatGPT（外出中）</text>
+  <path d="M750,235 L750,200" stroke="#f85149" stroke-width="1.5" fill="none" marker-end="url(#arrowRed)"/>
+  <text x="800" y="222" fill="#f85149" font-size="11">読み取りのみ</text>
+
+  <defs>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#58a6ff"/></marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#d29922"/></marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#f85149"/></marker>
+  </defs>
+
+  <!-- Bottom note -->
+  <rect x="120" y="490" width="0" height="0"/>
+  <text x="450" y="540" text-anchor="middle" fill="#8b949e" font-size="13">ローカルAIはフォルダを直接読み書き。RAGは索引、APIは外部からの読み取り窓口</text>
+</svg>

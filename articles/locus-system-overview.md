@@ -10,6 +10,8 @@ Claude Codeで進めた作業の続きを、翌日にCodexで始める。外出�
 
 この時、それぞれのAIは昨日の会話を自動では知りません。AIごとに会話履歴も保存場所も違うためです。
 
+![AIは会話の外側を自動では覚えていない。セッションやAIが変わるたびに、前回の文脈は引き継がれない](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/forgetting-across-sessions.svg)
+
 Locus Systemは、この分断を埋めるために作っている個人用の記憶システムです。
 
 目標は、**AIとの会話や作業について「完全な記憶」を持つこと**です。セッションやAIが変わっても、まるで一つの会話がずっと続いているように、過去の判断や失敗を必要な時に思い出せる状態を目指しています。
@@ -47,6 +49,8 @@ AIと長期プロジェクトを進めると、毎回同じ問題が起きます
 ## 現在の実装は一つのフォルダ
 
 現在のLocus Systemでは、一つのフォルダを記憶の中心にしています。
+
+![Locus Systemの全体俯瞰図。中心のMarkdownフォルダに、ローカルAIは直接読み書き、RAGは索引を作り、外部のChatGPTは読み取り専用の窓口を経由する](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/system-map.svg)
 
 ```text
 locus/
