@@ -6,7 +6,9 @@ topics: ["klipper", "3dprinter", "pressureadvance", "3dprint", "calibration"]
 published: false
 ---
 
-Anycubic i3 Mega S を Klipper に移行した話は[別記事](https://zenn.dev/yumeno/articles/klipper-anycubic-i3-megas)に書いた。今回はその続きで、積み残しになっていた **Pressure Advance（以下PA）** の校正をやった記録。
+3Dプリンターの出力精度を上げる調整をした話。専門用語で言うと **Pressure Advance（以下PA）** というパラメータの校正になる。
+
+Anycubic i3 Mega S を Klipper に移行した話は[別記事](https://zenn.dev/yumeno/articles/klipper-anycubic-i3-megas)に書いた。今回はその続きで、積み残しになっていたPAの校正をやった記録。
 
 結論だけ言うと校正自体は終わって `pressure_advance: 0.62` に落ち着いた。ただし過程はきれいじゃなかった。ベッド定着で3回転け、校正コマンドの送信を丸ごと1回忘れ、写真の見間違いで小一時間考え込んでしまった。今回はその失敗の中身をそのまま記録する。
 
