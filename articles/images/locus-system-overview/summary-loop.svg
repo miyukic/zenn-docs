@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="800" height="800" fill="#0d1117"/>
+  <text x="400" y="42" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="bold">今の仕組みが回している循環</text>
+
+  <!-- Circle guide (invisible) center=400,430 radius=260 -->
+  <!-- 5 nodes at angles: -90(top), -18, 54, 126, 198 degrees -->
+
+  <!-- connecting circular arrow path -->
+  <path d="M 400 170
+           A 260 260 0 1 1 399 170"
+        fill="none" stroke="#30363d" stroke-width="3" stroke-dasharray="2,10" stroke-linecap="round"/>
+
+  <!-- Node 1: top - 起動 -->
+  <g>
+    <circle cx="400" cy="170" r="76" fill="#161b22" stroke="#3fb950" stroke-width="2.5"/>
+    <text x="400" y="160" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">①起動</text>
+    <text x="400" y="180" text-anchor="middle" fill="#e6edf3" font-size="12">必要な前提を</text>
+    <text x="400" y="196" text-anchor="middle" fill="#e6edf3" font-size="12">読んで始める</text>
+  </g>
+
+  <!-- Node 2: right-upper - AIと作業 -->
+  <g>
+    <circle cx="647" cy="350" r="76" fill="#161b22" stroke="#58a6ff" stroke-width="2.5"/>
+    <text x="647" y="340" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">②作業</text>
+    <text x="647" y="360" text-anchor="middle" fill="#e6edf3" font-size="12">AIと会話・</text>
+    <text x="647" y="376" text-anchor="middle" fill="#e6edf3" font-size="12">実装を進める</text>
+  </g>
+
+  <!-- Node 3: right-lower - Markdownへ記録 -->
+  <g>
+    <circle cx="561" cy="600" r="76" fill="#161b22" stroke="#d29922" stroke-width="2.5"/>
+    <text x="561" y="590" text-anchor="middle" fill="#d29922" font-size="13" font-weight="bold">③記録</text>
+    <text x="561" y="610" text-anchor="middle" fill="#e6edf3" font-size="12">Markdownへ</text>
+    <text x="561" y="626" text-anchor="middle" fill="#e6edf3" font-size="12">書き残す</text>
+  </g>
+
+  <!-- Node 4: left-lower - 保存 -->
+  <g>
+    <circle cx="239" cy="600" r="76" fill="#161b22" stroke="#f85149" stroke-width="2.5"/>
+    <text x="239" y="588" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">④保存</text>
+    <text x="239" y="608" text-anchor="middle" fill="#e6edf3" font-size="12">検索DBと</text>
+    <text x="239" y="624" text-anchor="middle" fill="#e6edf3" font-size="12">Gitへ反映</text>
+  </g>
+
+  <!-- Node 5: left-upper - 次のAIが読む -->
+  <g>
+    <circle cx="153" cy="350" r="76" fill="#161b22" stroke="#a371f7" stroke-width="2.5"/>
+    <text x="153" y="332" text-anchor="middle" fill="#a371f7" font-size="13" font-weight="bold">⑤引き継ぎ</text>
+    <text x="153" y="352" text-anchor="middle" fill="#e6edf3" font-size="12">次のAI・</text>
+    <text x="153" y="368" text-anchor="middle" fill="#e6edf3" font-size="12">次回の自分が</text>
+    <text x="153" y="384" text-anchor="middle" fill="#e6edf3" font-size="12">同じ続きを読む</text>
+  </g>
+
+  <!-- Arrows between nodes along the circle -->
+  <defs>
+    <marker id="arrowLoop" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#8b949e"/></marker>
+  </defs>
+  <path d="M 465 200 A 260 260 0 0 1 610 280" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#arrowLoop)"/>
+  <path d="M 620 420 A 260 260 0 0 1 585 528" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#arrowLoop)"/>
+  <path d="M 490 630 A 260 260 0 0 1 310 630" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#arrowLoop)"/>
+  <path d="M 215 528 A 260 260 0 0 1 180 420" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#arrowLoop)"/>
+  <path d="M 190 280 A 260 260 0 0 1 335 200" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#arrowLoop)"/>
+
+  <!-- Center label -->
+  <text x="400" y="420" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">セッションや</text>
+  <text x="400" y="442" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">AIが変わっても</text>
+  <text x="400" y="464" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">この輪が切れない</text>
+
+  <!-- Bottom caption -->
+  <text x="400" y="760" text-anchor="middle" fill="#8b949e" font-size="13">正本はMarkdown。RAGは索引、APIは入口、LocusSaveは④を回す保存処理</text>
+</svg>

@@ -6,6 +6,8 @@ topics: ["ai", "rag", "markdown", "llm", "pgvector"]
 published: true
 ---
 
+![Locus System](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/locus-logo.svg)
+
 Claude Codeで進めた作業の続きを、翌日にCodexで始める。外出中はスマートフォンのChatGPTから確認する。
 
 この時、それぞれのAIは昨日の会話を自動では知りません。AIごとに会話履歴も保存場所も違うためです。
@@ -356,6 +358,8 @@ AIと話す・作業する
   → 検索DBとGitへ保存
   → 次のAIが同じ続きを読む
 ```
+
+![今の仕組みが回している循環。起動→作業→記録→保存→引き継ぎ、そしてまた次の起動へ。セッションやAIが変わってもこの輪が切れない](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system-overview/summary-loop.svg)
 
 現在の記憶の正本はMarkdownです。
 
