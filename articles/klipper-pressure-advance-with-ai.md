@@ -1,20 +1,24 @@
 ---
-title: "KlipperのPressure Advance校正で、AIと一緒に何度も転んだ話"
+title: "KlipperのPressure Advance校正でハマったこと"
 emoji: "🌀"
 type: "tech"
-topics: ["klipper", "3dprinter", "pressureadvance", "ai", "claude"]
+topics: ["klipper", "3dprinter", "pressureadvance", "3dprint", "calibration"]
 published: false
 ---
 
 Anycubic i3 Mega S を Klipper に移行した話は[別記事](https://zenn.dev/yumeno/articles/klipper-anycubic-i3-megas)に書いた。今回はその続きで、積み残しになっていた **Pressure Advance（以下PA）** の校正をやった記録。
 
-結論だけ言うと校正自体は終わって `pressure_advance: 0.62` に落ち着いた。ただし過程はきれいじゃなかった。ベッド定着で3回転け、AI（Claude Code）が校正コマンドの送信を丸ごと1回忘れ、写真の見間違いで小一時間すれ違った。今回はその失敗の中身をそのまま記録する。
+結論だけ言うと校正自体は終わって `pressure_advance: 0.62` に落ち着いた。ただし過程はきれいじゃなかった。ベッド定着で3回転け、校正コマンドの送信を丸ごと1回忘れ、写真の見間違いで小一時間すれ違った。今回はその失敗の中身をそのまま記録する。
+
+:::message
+このプリンターは、ロボットアーム自作プロジェクト（[SO-101 / LocusArm](https://zenn.dev/yumeno/articles/so101-lerobot-act-dataset-peek)）向けの部品出力にも使う予定。実部品を精度良く出すための下準備として、まず品質の底上げからやっている。
+:::
 
 ## Pressure Advance とは何か
 
 3Dプリンターは、ノズルが加速・減速するたびに押し出し量を微調整しないと、角でだけ樹脂が余ったり足りなかったりする。PAはその補正値で、Marlinで言う「Linear Advance」に近い。
 
-Marlin純正ファームでもLinear Advance自体は存在するが、有効化にはファームの再ビルドが要る。Klipperなら値を変えて再起動するだけで試せる。今回の校正がAIとのやり取りだけで完結できたのも、この身軽さのおかげ。
+Marlin純正ファームでもLinear Advance自体は存在するが、有効化にはファームの再ビルドが要る。Klipperなら値を変えて再起動するだけで試せる。今回の校正が身軽に進められたのも、この仕組みのおかげ。
 
 ## 校正方法：TUNING_TOWER
 
@@ -33,8 +37,10 @@ PA = START + 現在のZ高さ(mm) × FACTOR
 50mm角の中空タワー（`square_tower.stl`、Klipper公式のキャリブレーションモデル）を焼くと、底で PA=0、てっぺんで PA=1.0 まで連続的に変化する。焼き終わったら側面の角を見て、一番シャープに見える高さを測り、`高さ × 0.020` で最適値を逆算する。
 
 :::message
-この式は**絶対Z高さ基準**で、印刷開始からの経過時間やコマンドを送ったタイミングには依存しない。これが後述するAIの凡ミスを救うことになる。
+この式は**絶対Z高さ基準**で、印刷開始からの経過時間やコマンドを送ったタイミングには依存しない。これが後述するミスを救うことになる。
 :::
+
+![高さとPA値の対応。緑=PA不足で角が膨らむ、青=適正でシャープ、赤=PA過多で角が薄く途切れる](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/tuning-tower-diagram.svg)
 
 ## 定着トラブル：3回のうち2回失敗
 
@@ -48,15 +54,17 @@ PA = START + 現在のZ高さ(mm) × FACTOR
 
 **3回目：ブリム + スティックのり** — ベッド面にのりを薄く（というより、指で伸ばして均一に）塗ってから再挑戦。これで無事定着し、最後まで焼き切れた。
 
+![ブリム+のりで定着し、四隅とも浮かずに育っているところ](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/success-with-glue.jpg)
+
 3回のうち2回が失敗したことで、逆に「ブリム単体では不十分」という切り分けができた。1回で成功していたら、のりが本当に効いていたのかは分からないままだった。
 
 :::message
 定着不良の原因探しでは「ベッドが劣化してるのでは」「Z軸オフセットがズレてるのでは」という仮説も出たが、過去のキャリブレーション記録（`z_offset=1.802`）と実測値を突き合わせて、両方とも否定できた。今回の主犯は形状（薄壁・鋭角・中空）と印刷条件（高速・急冷却）の組み合わせで、機体側の異常ではなかった。
 :::
 
-## AIがやらかしたこと：校正コマンドの送信忘れ
+## 校正コマンドの送信忘れ
 
-3回目の印刷が始まってから、ベッド定着トラブルの対応（のりを塗る、写真で確認する、といったやり取り）に気を取られているうちに、Claude Code（筆者を担当していたAI）が **`TUNING_TOWER` コマンドを送るのをまるごと忘れた**。
+3回目の印刷が始まってから、ベッド定着トラブルの対応（のりを塗る、写真で確認する、といったやり取り）に気を取られているうちに、**`TUNING_TOWER` コマンドを送るのをまるごと忘れていた**。
 
 気づいたのは印刷が32%まで進んだ時点。PAはずっと0のまま固定されていて、校正データとしては機能していなかった。
 
@@ -79,9 +87,9 @@ PA = START + 現在のZ高さ(mm) × FACTOR
 
 ![外壁と内壁が高さ全体にわたって分離した状態](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/separated-walls.jpg)
 
-問題はここから。タワーの**内壁側**に、PAコマンドを送った高さ（Z≈17mm）を起点に上までずっと続く「薄くなった跡」が見つかった。一方、**外壁側**の角の膨らみ（PA不足の典型的なサイン）は、もっと高い位置まで残っているように見えた。
+問題はここから。タワーの**内壁側**に、コマンドを送った高さ（Z≈17mm）を起点に上までずっと続く「薄くなった跡」が見つかった。一方、**外壁側**の角の膨らみ（PA不足の典型的なサイン）は、もっと高い位置まで残っているように見えた。
 
-![角に沿った薄い跡(赤線)と、PAコマンドを送った高さの境目(オレンジ線)](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/annotated-corner.png)
+![角に沿った薄い跡(赤線)と、コマンドを送った高さの境目(オレンジ線)](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/klipper-pressure-advance-with-ai/annotated-corner.png)
 
 この2つの現象を同じものとして扱おうとして、小一時間すれ違った。最終的に整理できた結論はこう。
 

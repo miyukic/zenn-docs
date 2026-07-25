@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Yu Gothic',sans-serif">
+  <rect width="900" height="560" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#e6edf3" font-size="22" font-weight="bold">TUNING_TOWER: 高さとPA値の対応</text>
+
+  <!-- Axis -->
+  <line x1="140" y1="80" x2="140" y2="480" stroke="#6e7681" stroke-width="2"/>
+  <text x="115" y="70" fill="#8b949e" font-size="14">高さ(mm)</text>
+
+  <!-- Tower body: gradient bar from bottom(low PA) to top(high PA) -->
+  <defs>
+    <linearGradient id="towerGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#3fb950"/>
+      <stop offset="35%" stop-color="#3fb950"/>
+      <stop offset="55%" stop-color="#58a6ff"/>
+      <stop offset="75%" stop-color="#d29922"/>
+      <stop offset="100%" stop-color="#f85149"/>
+    </linearGradient>
+  </defs>
+  <rect x="220" y="80" width="90" height="400" fill="url(#towerGrad)" rx="4"/>
+
+  <!-- Height gridlines + labels: 0,17,31,50 mm mapped to y (480 = 0mm, 80 = 50mm) -->
+  <!-- scale: y = 480 - (height/50)*400 -->
+  <g stroke="#30363d" stroke-width="1">
+    <line x1="140" y1="480" x2="820" y2="480"/> <!-- 0mm -->
+    <line x1="140" y1="344" x2="820" y2="344" stroke-dasharray="4,4"/> <!-- 17mm -->
+    <line x1="140" y1="232" x2="820" y2="232" stroke-dasharray="4,4"/> <!-- 31mm -->
+    <line x1="140" y1="80" x2="820" y2="80"/> <!-- 50mm -->
+  </g>
+
+  <text x="130" y="485" text-anchor="end" fill="#8b949e" font-size="14">0mm</text>
+  <text x="130" y="349" text-anchor="end" fill="#8b949e" font-size="14">17mm</text>
+  <text x="130" y="237" text-anchor="end" fill="#8b949e" font-size="14">31mm</text>
+  <text x="130" y="85" text-anchor="end" fill="#8b949e" font-size="14">50mm</text>
+
+  <!-- PA value labels on right of tower -->
+  <text x="330" y="485" fill="#7d8590" font-size="13">PA = 0</text>
+  <text x="330" y="349" fill="#7d8590" font-size="13">PA ≈ 0.33（コマンド送信忘れの境目）</text>
+  <text x="330" y="237" fill="#e6edf3" font-size="14" font-weight="bold">PA = 0.62（採用値）</text>
+  <text x="330" y="85" fill="#7d8590" font-size="13">PA = 1.0</text>
+
+  <!-- Zone labels on left side of tower, describing corner appearance -->
+  <text x="210" y="460" text-anchor="end" fill="#3fb950" font-size="13">角が膨らむ</text>
+  <text x="210" y="440" text-anchor="end" fill="#3fb950" font-size="12">(PA不足)</text>
+
+  <text x="210" y="255" text-anchor="end" fill="#58a6ff" font-size="13" font-weight="bold">角がシャープ</text>
+  <text x="210" y="275" text-anchor="end" fill="#58a6ff" font-size="12">(適正)</text>
+
+  <text x="210" y="110" text-anchor="end" fill="#f85149" font-size="13">角が薄く途切れる</text>
+  <text x="210" y="130" text-anchor="end" fill="#f85149" font-size="12">(PA過多)</text>
+
+  <!-- Jump marker at 17mm -->
+  <circle cx="265" cy="344" r="5" fill="#fff" stroke="#000" stroke-width="1"/>
+  <text x="600" y="330" fill="#d29922" font-size="13" text-anchor="middle">↑ コマンドを送った瞬間、ここで0→0.33に一気にジャンプ</text>
+
+  <!-- Chosen point at 31mm -->
+  <circle cx="265" cy="232" r="6" fill="#58a6ff" stroke="#fff" stroke-width="2"/>
+  <text x="600" y="218" fill="#58a6ff" font-size="13" text-anchor="middle" font-weight="bold">★ 外壁の角が一番シャープに見えた高さ</text>
+
+  <!-- Formula box -->
+  <rect x="460" y="440" width="360" height="70" rx="6" fill="#161b22" stroke="#30363d"/>
+  <text x="640" y="468" text-anchor="middle" fill="#e6edf3" font-size="15" font-family="monospace">PA = 高さ(mm) × 0.020</text>
+  <text x="640" y="492" text-anchor="middle" fill="#8b949e" font-size="13" font-family="monospace">31mm × 0.020 = 0.62</text>
+</svg>
