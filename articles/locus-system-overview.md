@@ -6,7 +6,8 @@ topics: ["ai", "rag", "markdown", "llm", "pgvector"]
 published: true
 ---
 
-![locus-wordmark](/images/locus-system/locus-wordmark.png)
+![Locus System](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/_brand/locus-wordmark.png)
+
 Claude Codeで進めた作業の続きを、翌日にCodexで始める。外出中はスマートフォンのChatGPTから確認する。
 
 この時、それぞれのAIは昨日の会話を自動では知りません。AIごとに会話履歴も保存場所も違うためです。
