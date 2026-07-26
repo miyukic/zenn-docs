@@ -6,7 +6,7 @@ topics: ["ai", "rag", "markdown", "llm", "pgvector"]
 published: true
 ---
 
-![Locus System](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/_brand/locus-wordmark.png)
+![Locus System](https://raw.githubusercontent.com/miyukic/zenn-docs/master/articles/images/locus-system/locus-wordmark.png)
 
 Claude Codeで進めた作業の続きを、翌日にCodexで始める。外出中はスマートフォンのChatGPTから確認する。
 
